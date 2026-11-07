@@ -6,7 +6,6 @@
 
 #include "AccessFlag.h"
 #include "AttributeInfo.h"
-#include "ConstantPoolEntry.h"
 #include "CpuInfo.h"
 #include "FieldInfo.h"
 #include "MethodInfo.h"
@@ -24,7 +23,7 @@
 #include <fstream>
 
 using rawFile = std::vector<uint8_t>;
-using Entry = ConstantPoolEntry;
+using Entry = CpuInfo;
 using EntryPtr = std::unique_ptr<Entry>;
 using ConstantPool = std::vector<EntryPtr>;
 
