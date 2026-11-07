@@ -1,7 +1,7 @@
-#ifndef _ATTRIBUTE_INFO
-#define _ATTRIBUTE_INFO
+#ifndef __ATTRIBUTE_INFO
+#define __ATTRIBUTE_INFO
 
-#include "Tanam.h"
+#include "Tanagram.h"
 #include <iomanip>
 #include <iostream>
 #include <memory>
@@ -47,7 +47,7 @@ inline std::ostream& operator<<(std::ostream &os, const AttributeInfo &current) 
   return os;
 };
 
-#endif /* _ATTRIBUTE_INFO */
+#endif /* __ATTRIBUTE_INFO */
 
 // END OF FILE
 

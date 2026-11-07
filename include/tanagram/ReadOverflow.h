@@ -1,6 +1,5 @@
-#ifndef _READ_OVERFLOW
-#define _READ_OVERFLOW
-
+#ifndef __READ_OVERFLOW
+#define __READ_OVERFLOW
 #include <exception>
 #include <string>
 
@@ -16,7 +15,7 @@ class ReadOverflowException : public std::exception {
     };
 };
 
-#endif /* _READ_OVERFLOW */
+#endif /* __READ_OVERFLOW */
 
 // END OF FILE
 

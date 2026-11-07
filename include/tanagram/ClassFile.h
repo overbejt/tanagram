@@ -1,8 +1,8 @@
 /**
  * Spec located at: https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html
  */
-#ifndef _CLASS_FILE_H
-#define _CLASS_FILE_H
+#ifndef __CLASS_FILE_H
+#define __CLASS_FILE_H
 
 #include "AccessFlag.h"
 #include "AttributeInfo.h"
@@ -12,7 +12,7 @@
 #include "MethodInfo.h"
 #include "ReadOverflow.h"
 #include "Tag.h"
-#include "Tanam.h"
+#include "Tanagram.h"
 #include <iostream>
 #include <cstdint>
 #include <vector>
@@ -20,6 +20,8 @@
 #include <iomanip>
 #include <utility>
 #include <memory>
+#include <string>
+#include <fstream>
 
 using rawFile = std::vector<uint8_t>;
 using Entry = ConstantPoolEntry;
@@ -33,6 +35,8 @@ class ClassFile {
     uint32_t readByte();
     uint32_t readHalfWord();
     uint32_t readWord();
+    bool initFromBuffer();
+    void readClassFile(const std::string &classFilePath);
     void setAttributes();
     void setConstantPool();
     void setFields();
@@ -64,14 +68,13 @@ class ClassFile {
     u2 attributesCount;
     Attributes attributes;
     ClassFile();
-    ClassFile(rawFile buffer);
-    bool initFromBuffer();
-    void hex_dump();
-    void setBuffer(rawFile buffer);
+    ClassFile(const std::string& classFilePath);
+    void hexDump();
+    void processFile(const std::string& classFilePath);
     friend std::ostream& operator<<(std::ostream &os, const ClassFile &clazz);
 };
 
-#endif /* _CLASS_FILE_H */
+#endif /* __CLASS_FILE_H */
 
 // END OF FILE
 

@@ -1,12 +1,18 @@
-#include "tanam/ClassFile.h"
+#include "tanagram/ClassFile.h"
 #include <stdexcept>
 
 ClassFile::ClassFile() {
 }  // End of the 'ClassFile' Constructor
 
-ClassFile::ClassFile(rawFile buffer) : buffer(std::move(buffer)) {
+ClassFile::ClassFile(const std::string& classFilePath) {
+  readClassFile(classFilePath);
   initFromBuffer();
 }  // End of the 'ClassFile' overloaded Constructor
+
+void ClassFile::processFile(const std::string& classFilePath) {
+  readClassFile(classFilePath);
+  initFromBuffer();
+}  // End of the 'process_file' function
 
 bool ClassFile::initFromBuffer() {
   bufferIdx = 0;
@@ -37,6 +43,25 @@ bool ClassFile::initFromBuffer() {
   //   return false;
   // } 
 }  // End of the 'initFromBuffer' function
+
+void ClassFile::readClassFile(const std::string &classFilePath) {
+ std::cout << "Processing " << classFilePath << std::endl;
+
+ std::ifstream file(classFilePath, std::ios::binary);
+ if (!file.is_open()) {
+   std::cerr << "Failed to open: " << classFilePath << std::endl;
+   return;  // TODO escape early
+ }
+
+ buffer.assign(
+     std::istreambuf_iterator<char>(file),
+     std::istreambuf_iterator<char>()
+ );
+ std::cout << "Read " << buffer.size() << " bytes" << std::endl;
+ file.close();
+
+ return;
+}  // End of the 'readClassFile' function
 
 /**
  * Boo-yah
@@ -230,7 +255,6 @@ void ClassFile::setMethods() {
   }
 }  // End of the 'setMethods' function
 
-// TODO bug overflow error on the buffer
 void ClassFile::setAttributes() {
   for (size_t a = 0; a < attributesCount; a++) {
     uint32_t attributeNameIndex = readHalfWord();
@@ -389,31 +413,23 @@ std::ostream& operator<<(std::ostream &os, const ClassFile &clazz) {
   return os;
 }  // End of the 'operator<<' function
 
-void ClassFile::hex_dump() {
-    int i = 0;
-    std::cout << std::hex;
-    std::cout << std::setfill(' ') << std::setw(4) << i << ": ";
-    // int breaker = 5 * 16;
-    for (const auto c : buffer) {
-      // if (i > breaker) {
-        // break;
-      // }
-      if (i % 16 == 0 && i != 0) {
-        std::cout << std::endl << std::setfill(' ') << std::setw(4) << i << ": ";
-      }
-      if (i % 4 == 0 && i != 0 && i % 16 != 0) {
-        std::cout << ' ';
-      }
-      uint32_t val = c;
-      std::cout << std::setfill('0') << std::setw(2) << val;
-      i++;
+void ClassFile::hexDump() {
+  int i = 0;
+  std::cout << std::hex;
+  std::cout << std::setfill(' ') << std::setw(4) << i << ": ";
+  for (const auto c : buffer) {
+    if (i % 16 == 0 && i != 0) {
+      std::cout << std::endl << std::setfill(' ') << std::setw(4) << i << ": ";
     }
-    std::cout << std::dec << std::endl << std::endl;
+    if (i % 4 == 0 && i != 0 && i % 16 != 0) {
+      std::cout << ' ';
+    }
+    uint32_t val = c;
+    std::cout << std::setfill('0') << std::setw(2) << val;
+    i++;
+  }
+  std::cout << std::dec << std::endl << std::endl;
 }  // End of the 'hex_dump' function
-
-void ClassFile::setBuffer(rawFile new_buffer) {
-  buffer = std::move(new_buffer);
-}  // End of the 'setBuffer' function
 
 // END OF FILE
 

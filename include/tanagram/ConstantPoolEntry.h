@@ -1,8 +1,8 @@
-#ifndef _CONSTANT_POOL_ENTRY
-#define _CONSTANT_POOL_ENTRY
+#ifndef __CONSTANT_POOL_ENTRY
+#define __CONSTANT_POOL_ENTRY
 
 #include "Tag.h"
-#include "Tanam.h"
+#include "Tanagram.h"
 #include <iostream>
 #include <iomanip>
 #include <memory>
@@ -17,11 +17,7 @@ class ConstantPoolEntry {
     virtual ~ConstantPoolEntry() = default;
     virtual Tag getTag() const = 0;
     virtual void print(std::ostream &os) const = 0;
-};
-
-// struct Padding {
-  // int pad;
-// };
+};  // End of the 'ConstantPoolEntry' class
 
 inline std::ostream& operator<<(std::ostream& os, const std::unique_ptr<ConstantPoolEntry> &entry) {
   if (entry) {
@@ -31,11 +27,6 @@ inline std::ostream& operator<<(std::ostream& os, const std::unique_ptr<Constant
   }
   return os;
 };
-
-// inline std::ostream& operator<<(std::ostream& os, Padding& padding) {
-  // os << std::setfill(' ') << std::setw(padding.pad) << "";
-  // return os;
-// };
 
 class ConstantClassInfo : public ConstantPoolEntry {
   private:
@@ -47,11 +38,11 @@ class ConstantClassInfo : public ConstantPoolEntry {
     
     Tag getTag() const override { 
       return Tag::CONSTANT_Class;
-    };
+    };  // End of the 'getTag' function
     
     u2 getNameIndex() const { 
       return nameIndex; 
-    };
+    };  // End of the 'getNameIndex' function
 
     void print(std::ostream& os) const override {
       Padding padding{6};
@@ -62,8 +53,8 @@ class ConstantClassInfo : public ConstantPoolEntry {
       os << std::hex << nameIndex << std::dec << "\n";
       padding.pad = 4; 
       os << padding << "}";
-    };
-};
+    };  // End of the 'print' function
+};  // End of the 'ConstantClassInfo' class
 
 class ConstantFieldrefInfo : public ConstantPoolEntry {
   private:
@@ -99,7 +90,7 @@ class ConstantFieldrefInfo : public ConstantPoolEntry {
       padding.pad = 4;
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantFieldrefInfo' class
 
 class ConstantMethodrefInfo : public ConstantPoolEntry {
   private:
@@ -137,7 +128,7 @@ class ConstantMethodrefInfo : public ConstantPoolEntry {
       padding.pad = 4;
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantMethodrefInfo' class
 
 class ConstantInterfaceMethodrefInfo : public ConstantPoolEntry {
   private:
@@ -171,7 +162,7 @@ class ConstantInterfaceMethodrefInfo : public ConstantPoolEntry {
       os << padding << "nameAndTypeIndex: 0x" << nameAndTypeIndex;
       os << std::dec << "\n  }";
     };
-};
+};  // End of the 'ConstantInterfaceMethodrefInfo' class
 
 class ConstantStringInfo : public ConstantPoolEntry {
   private:
@@ -200,7 +191,7 @@ class ConstantStringInfo : public ConstantPoolEntry {
       os << stringIndex << std::dec << "\n";
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantStringInfo' class
 
 class ConstantIntegerInfo : public ConstantPoolEntry {
   private:
@@ -229,7 +220,7 @@ class ConstantIntegerInfo : public ConstantPoolEntry {
       padding.pad = 4;
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantIntegerInfo' class
 
 class ConstantFloatInfo : public ConstantPoolEntry {
   private:
@@ -258,7 +249,7 @@ class ConstantFloatInfo : public ConstantPoolEntry {
       padding.pad = 4;
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantFloatInfo' class
 
 class ConstantLongInfo : public ConstantPoolEntry {
   private:
@@ -294,7 +285,7 @@ class ConstantLongInfo : public ConstantPoolEntry {
       padding.pad = 4;
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantLongInfo' class
 
 class ConstantDoubleInfo : public ConstantPoolEntry {
   private:
@@ -330,7 +321,7 @@ class ConstantDoubleInfo : public ConstantPoolEntry {
       padding.pad = 4;
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantDoubleInfo' class
 
 class ConstantNameAndTypeInfo : public ConstantPoolEntry {
   private:
@@ -366,7 +357,7 @@ class ConstantNameAndTypeInfo : public ConstantPoolEntry {
       padding.pad = 4;
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantNameAndTypeInfo' class
 
 class ConstantUtf8Info : public ConstantPoolEntry {
   private:
@@ -443,7 +434,7 @@ class ConstantMethodHandleInfo : public ConstantPoolEntry {
       padding.pad = 4;
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantMethodHandleInfo' class
 
 class ConstantMethodTypeInfo : public ConstantPoolEntry {
   private:
@@ -472,7 +463,7 @@ class ConstantMethodTypeInfo : public ConstantPoolEntry {
       padding.pad = 4;
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantMethodTypeInfo' class
 
 class ConstantInvokeDynamicInfo : public ConstantPoolEntry {
   private:
@@ -501,9 +492,9 @@ class ConstantInvokeDynamicInfo : public ConstantPoolEntry {
       padding.pad = 4;
       os << padding << "}";
     };
-};
+};  // End of the 'ConstantInvokeDynamicInfo' class
 
-#endif /* _CONSTANT_POOL_ENTRY */
+#endif /* __CONSTANT_POOL_ENTRY */
 
 // END OF FILE
 

@@ -1,8 +1,8 @@
-#ifndef _METHOD_INFO
-#define _METHOD_INFO
+#ifndef __METHOD_INFO
+#define __METHOD_INFO
 
 #include "AttributeInfo.h"
-#include "Tanam.h"
+#include "Tanagram.h"
 #include <iostream>
 #include <iomanip>
 #include <memory>
@@ -80,7 +80,7 @@ inline std::ostream& operator<<(std::ostream &os, const MethodInfo &current) {
   return os;
 };
 
-#endif /* _METHOD_INFO */
+#endif /* __METHOD_INFO */
 
 // END OF FILE
 

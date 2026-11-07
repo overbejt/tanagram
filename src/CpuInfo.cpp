@@ -1,4 +1,4 @@
-#include "tanam/CpuInfo.h"
+#include "tanagram/CpuInfo.h"
 
 CpuInfo::CpuInfo() { }
 

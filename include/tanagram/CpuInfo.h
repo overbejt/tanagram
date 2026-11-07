@@ -1,8 +1,8 @@
-#ifndef _CPU_INFO
-#define _CPU_INFO
+#ifndef __CPU_INFO
+#define __CPU_INFO
 
 #include "Tag.h"
-#include "Tanam.h"
+#include "Tanagram.h"
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -18,7 +18,7 @@ class CpuInfo {
     friend std::ostream& operator<<(std::ostream &os, const CpuInfo &cpu_info);
 };
 
-#endif /* _CPU_INFO */
+#endif /* __CPU_INFO */
 
 // END OF FILE
 

@@ -1,9 +1,9 @@
-#ifndef _FIELD_INFO
-#define _FIELD_INFO
+#ifndef __FIELD_INFO
+#define __FIELD_INFO
 
 #include "AccessFlag.h"
 #include "AttributeInfo.h"
-#include "Tanam.h"
+#include "Tanagram.h"
 #include <iostream>
 #include <utility>
 #include <iomanip>
@@ -47,7 +47,7 @@ inline std::ostream& operator<<(std::ostream &os, const FieldInfo &current) {
   return os;
 };
 
-#endif /* _FIELD_INFO */
+#endif /* __FIELD_INFO */
 
 // END OF FILE
 

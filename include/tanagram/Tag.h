@@ -1,5 +1,5 @@
-#ifndef _TAG
-#define _TAG
+#ifndef __TAG
+#define __TAG
 
 #include <iostream>
 #include <utility>
@@ -41,7 +41,7 @@ inline std::ostream& operator<<(std::ostream &os, const Tag &tag) {
   }
 };  // End of the overloaded << operator for the Tag class
 
-#endif /* _TAG */
+#endif /* __TAG */
 
 // END OF FILE
 
