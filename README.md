@@ -1,0 +1,59 @@
+# Tanagram
+
+It's a collection of c++ classes for parsing java class files.  The build target generates a python module to make it easier to leverage the c++ code.
+
+## How to build
+
+```bash
+mkdir build
+cd build 
+cmake ../
+cmake --build .
+```
+
+## How to use
+
+```python3
+# from the build dir
+from tanagram import ClassFile
+▶ python3
+Python 3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0
+] on linux
+Type "help", "copyright", "credits" or "license" for mor
+e information.
+>>> from tanagram import ClassFile
+>>> f = ClassFile('../example/Example.class')
+Processing ../example/Example.class
+Read 424 bytes
+>>> f.hex_dump()
+   0: cafebabe 00000041 001d0a00 02000307
+  10: 00040c00 05000601 00106a61 76612f6c
+  20: 616e672f 4f626a65 63740100 063c696e
+  30: 69743e01 00032829 56090008 00090700
+  40: 0a0c000b 000c0100 106a6176 612f6c61
+  50: 6e672f53 79737465 6d010003 6f757401
+  60: 00154c6a 6176612f 696f2f50 72696e74
+  70: 53747265 616d3b08 000e0100 10486572
+  80: 65207765 20676f20 61676169 6e0a0010
+  90: 00110700 120c0013 00140100 136a6176
+  a0: 612f696f 2f507269 6e745374 7265616d
+  b0: 01000770 72696e74 6c6e0100 15284c6a
+  c0: 6176612f 6c616e67 2f537472 696e673b
+  d0: 29560700 16010007 4578616d 706c6501
+  e0: 0004436f 64650100 0f4c696e 654e756d
+  f0: 62657254 61626c65 0100046d 61696e01
+ 100: 0016285b 4c6a6176 612f6c61 6e672f53
+ 110: 7472696e 673b2956 01000a53 6f757263
+ 120: 6546696c 6501000c 4578616d 706c652e
+ 130: 6a617661 00210015 00020000 00000002
+ 140: 00010005 00060001 00170000 001d0001
+ 150: 00010000 00052ab7 0001b100 00000100
+ 160: 18000000 06000100 00000200 09001900
+ 170: 1a000100 17000000 25000200 01000000
+ 180: 09b20007 120db600 0fb10000 00010018
+ 190: 0000000a 00020000 00040008 00050001
+ 1a0: 001b0000 0002001c
+
+# Invokes the overloaded insertion operator recurssively
+>>> print(f)
+```
